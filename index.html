@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Para YAYA 💖</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #ff9a9e, #722813);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      color: #ffffff;
+      padding: 10px;
+    }.container {
+      position: relative;
+      width: 100%;
+      max-width: 380px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      backdrop-filter: blur(10px);
+    }
+
+    h1 { font-size: 24px; margin: 0; }
+
+    p { font-size: 16px; margin-top: 10px; }
+
+    img {
+      margin-top: 15px;
+      width: 100%;
+      max-height: 180px;
+      object-fit: cover;
+      border-radius: 15px;
+      display: none;
+    }
+    button {
+      margin-top: 15px;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 15px;
+      background: #ff4b5c;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:active { transform: scale(0.95); }
+
+    .heart {
+      font-size: 35px;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    .final { margin-top: 15px; font-size: 18px; display: none; }
+
+    .btn-group {
+      margin-top: 10px;
+      position: relative;
+      height: 120px;
+    }
+
+    .btn-group button {
+      width: 48%;
+      display: inline-block;
+    }
+    .btn-nao {
+      position: absolute;
+      right: 0;
+    }
+
+    .resposta {
+      margin-top: 10px;
+      font-size: 18px;
+      display: none;
+    }
+
+    /* Melhor para telas muito pequenas */
+    @media (max-width: 360px) {
+      h1 { font-size: 20px; }
+      p { font-size: 14px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container" id="container">
+    <h1>Oi bê ❤️</h1>
+    <p id="mensagem">Fiz algo especial pra você...</p>
+    <div class="heart">🖕</div>
+
+    <img id="imagem" src="" alt="Imagem especial">
+
+    <button onclick="mostrarMensagem()">Clique aqui</button>
+
+    <div id="final" class="final">
+      Você gostou? 
+
+      <div class="btn-group">
+        <button onclick="respondeuSim()">Sim 😍</button>
+        <button class="btn-nao" id="btnNao" ontouchstart="fugir()" onmouseover="fugir()">Não 🖕</button>
+      </div>
+    </div>
+
+    <div id="resposta" class="resposta"></div>
+  </div>
+
+  <script>
+    let contador = 0;
+
+    function mostrarMensagem() {
+      const mensagens = [
+        "Fiz esse mousse com muito carinho e amor  ",
+        "Espero que você goste dele Yaya",
+        "Posso ser meio idiota às vezes... mas fiz isso de coração ",
+        "Tenha um ótimo apetite ",
+        "Se não gostar, eu faço outro pra tu "
+      ];
+
+      const imagens = [
+        "c:\\Users\\jaque\\OneDrive\\Imagens\\chef-cao-bonito-com-um-chapeu_1194-600276.jpg",
+        "c:\\Users\\jaque\\OneDrive\\Imagens\\286fa6c18ae7e16e0a6786a37fff5436.jpg",
+        "c:\\Users\\jaque\\OneDrive\\Imagens\\e8c44e036f2a9a106e800faf75428a1b.jpg",
+        "c:\\Users\\jaque\\OneDrive\\Imagens\\eca38b785382efb7066de5beb5237893.jpg",
+        "c:\\Users\\jaque\\OneDrive\\Imagens\\26-a-noite-estrelada-0-670-x-362.png"
+      ];
+
+      if (contador < mensagens.length) {
+        document.getElementById("mensagem").innerText = mensagens[contador];
+
+        const img = document.getElementById("imagem");
+        img.src = imagens[contador];
+        img.style.display = "block";
+
+
+        contador++;
+      } else {
+        document.getElementById("final").style.display = "block";
+      }
+    }
+
+    function respondeuSim() {
+      const r = document.getElementById("resposta");
+      r.style.display = "block";
+      r.innerText = "Sabia 😏💖";
+    }
+
+    function fugir() {
+      const botao = document.getElementById("btnNao");
+      const container = document.getElementById("container");
+
+      const maxX = container.clientWidth - botao.offsetWidth;
+      const maxY = 80;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      botao.style.left = x + "px";
+      botao.style.top = y + "px";
+    }
+  </script>
+
+</body>
+</html>
